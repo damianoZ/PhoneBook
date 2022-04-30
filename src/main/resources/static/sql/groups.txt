@@ -1,0 +1,11 @@
+CREATE TABLE IF NOT EXISTS public.groups
+(
+    id integer NOT NULL DEFAULT nextval('groups_id_seq'::regclass),
+    name character varying(255) COLLATE pg_catalog."default",
+    CONSTRAINT groups_pkey PRIMARY KEY (id)
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS public.groups
+    OWNER to postgres;

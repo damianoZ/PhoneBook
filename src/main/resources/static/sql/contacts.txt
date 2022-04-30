@@ -1,0 +1,19 @@
+CREATE TABLE IF NOT EXISTS public.contacts
+(
+    id integer NOT NULL DEFAULT nextval('contacts_id_seq'::regclass),
+    first_name character varying(255) COLLATE pg_catalog."default" NOT NULL,
+    last_name character varying(255) COLLATE pg_catalog."default",
+    favorite boolean DEFAULT false,
+    group_id integer,
+    phone_number character varying(255) COLLATE pg_catalog."default" NOT NULL,
+    CONSTRAINT contacts_pkey PRIMARY KEY (id),
+    CONSTRAINT contacts_group_id_fkey FOREIGN KEY (group_id)
+        REFERENCES public.groups (id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS public.contacts
+    OWNER to postgres;
